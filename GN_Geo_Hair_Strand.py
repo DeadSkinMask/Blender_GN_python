@@ -587,6 +587,12 @@ def geom_hair_strands_node_group():
     probability_socket.default_input = 'VALUE'
     probability_socket.structure_type = 'AUTO'
 
+    #Socket Curve
+    curve_socket = geom_hair_strands.interface.new_socket(name = "Curve", in_out='INPUT', socket_type = 'NodeSocketObject')
+    curve_socket.attribute_domain = 'POINT'
+    curve_socket.default_input = 'VALUE'
+    curve_socket.structure_type = 'AUTO'
+
 
     #initialize geom_hair_strands nodes
     #node Group Input
@@ -604,6 +610,7 @@ def geom_hair_strands_node_group():
     group_input_1.outputs[10].hide = True
     group_input_1.outputs[11].hide = True
     group_input_1.outputs[12].hide = True
+    group_input_1.outputs[13].hide = True
 
     #node Group Output
     group_output_1 = geom_hair_strands.nodes.new("NodeGroupOutput")
@@ -660,8 +667,6 @@ def geom_hair_strands_node_group():
     object_info = geom_hair_strands.nodes.new("GeometryNodeObjectInfo")
     object_info.name = "Object Info"
     object_info.transform_space = 'ORIGINAL'
-    if "BézierCurve" in bpy.data.objects:
-        object_info.inputs[0].default_value = bpy.data.objects["BézierCurve"]
     #As Instance
     object_info.inputs[1].default_value = False
 
@@ -835,6 +840,7 @@ def geom_hair_strands_node_group():
     group_input_001_1.outputs[10].hide = True
     group_input_001_1.outputs[11].hide = True
     group_input_001_1.outputs[12].hide = True
+    group_input_001_1.outputs[13].hide = True
 
     #node Spline Parameter
     spline_parameter = geom_hair_strands.nodes.new("GeometryNodeSplineParameter")
@@ -866,6 +872,7 @@ def geom_hair_strands_node_group():
     group_input_002_1.outputs[10].hide = True
     group_input_002_1.outputs[11].hide = True
     group_input_002_1.outputs[12].hide = True
+    group_input_002_1.outputs[13].hide = True
 
     #node Group Input.003
     group_input_003_1 = geom_hair_strands.nodes.new("NodeGroupInput")
@@ -882,6 +889,7 @@ def geom_hair_strands_node_group():
     group_input_003_1.outputs[10].hide = True
     group_input_003_1.outputs[11].hide = True
     group_input_003_1.outputs[12].hide = True
+    group_input_003_1.outputs[13].hide = True
 
     #node Group Input.004
     group_input_004_1 = geom_hair_strands.nodes.new("NodeGroupInput")
@@ -898,6 +906,7 @@ def geom_hair_strands_node_group():
     group_input_004_1.outputs[10].hide = True
     group_input_004_1.outputs[11].hide = True
     group_input_004_1.outputs[12].hide = True
+    group_input_004_1.outputs[13].hide = True
 
     #node Delete Geometry
     delete_geometry_1 = geom_hair_strands.nodes.new("GeometryNodeDeleteGeometry")
@@ -933,6 +942,7 @@ def geom_hair_strands_node_group():
     group_input_005_1.outputs[9].hide = True
     group_input_005_1.outputs[11].hide = True
     group_input_005_1.outputs[12].hide = True
+    group_input_005_1.outputs[13].hide = True
 
     #node Switch
     switch = geom_hair_strands.nodes.new("GeometryNodeSwitch")
@@ -954,6 +964,7 @@ def geom_hair_strands_node_group():
     group_input_006_1.outputs[10].hide = True
     group_input_006_1.outputs[11].hide = True
     group_input_006_1.outputs[12].hide = True
+    group_input_006_1.outputs[13].hide = True
 
     #node Group Input.007
     group_input_007_1 = geom_hair_strands.nodes.new("NodeGroupInput")
@@ -970,6 +981,7 @@ def geom_hair_strands_node_group():
     group_input_007_1.outputs[9].hide = True
     group_input_007_1.outputs[10].hide = True
     group_input_007_1.outputs[12].hide = True
+    group_input_007_1.outputs[13].hide = True
 
     #node Frame.001
     frame_001 = geom_hair_strands.nodes.new("NodeFrame")
@@ -993,6 +1005,24 @@ def geom_hair_strands_node_group():
     group_input_008_1.outputs[10].hide = True
     group_input_008_1.outputs[11].hide = True
     group_input_008_1.outputs[12].hide = True
+    group_input_008_1.outputs[13].hide = True
+
+    #node Group Input.009
+    group_input_009 = geom_hair_strands.nodes.new("NodeGroupInput")
+    group_input_009.name = "Group Input.009"
+    group_input_009.outputs[0].hide = True
+    group_input_009.outputs[1].hide = True
+    group_input_009.outputs[2].hide = True
+    group_input_009.outputs[3].hide = True
+    group_input_009.outputs[4].hide = True
+    group_input_009.outputs[5].hide = True
+    group_input_009.outputs[6].hide = True
+    group_input_009.outputs[7].hide = True
+    group_input_009.outputs[8].hide = True
+    group_input_009.outputs[9].hide = True
+    group_input_009.outputs[10].hide = True
+    group_input_009.outputs[11].hide = True
+    group_input_009.outputs[13].hide = True
 
 
     #Process zone input Repeat Input
@@ -1021,7 +1051,7 @@ def geom_hair_strands_node_group():
     store_named_attribute.location = (-135.6676025390625, 65.6512680053711)
     curve_to_mesh.location = (470.0260009765625, 261.4013671875)
     resample_curve.location = (-527.8696899414062, 398.154296875)
-    transform_geometry.location = (41.38105010986328, 35.21091842651367)
+    transform_geometry.location = (115.49071502685547, 86.41127014160156)
     object_info.location = (-910.5462036132812, 496.64544677734375)
     radius.location = (-194.13540649414062, 607.6942138671875)
     math.location = (51.99150085449219, 598.8920288085938)
@@ -1060,6 +1090,7 @@ def geom_hair_strands_node_group():
     group_input_007_1.location = (33.61083984375, -174.6937713623047)
     frame_001.location = (-1078.0, -6.0)
     group_input_008_1.location = (-189.08567810058594, 504.4698791503906)
+    group_input_009.location = (-1194.3780517578125, 398.05517578125)
 
     #Set dimensions
     group_input_1.width, group_input_1.height = 140.0, 100.0
@@ -1107,6 +1138,7 @@ def geom_hair_strands_node_group():
     group_input_007_1.width, group_input_007_1.height = 140.0, 100.0
     frame_001.width, frame_001.height = 616.0, 318.0
     group_input_008_1.width, group_input_008_1.height = 140.0, 100.0
+    group_input_009.width, group_input_009.height = 140.0, 100.0
 
     #initialize geom_hair_strands links
     #store_named_attribute_001.Geometry -> curve_to_mesh.Curve
@@ -1215,6 +1247,8 @@ def geom_hair_strands_node_group():
     geom_hair_strands.links.new(group_input_007_1.outputs[11], random_value_002.inputs[6])
     #group_input_008_1.Radius Scale -> math.Value
     geom_hair_strands.links.new(group_input_008_1.outputs[1], math.inputs[1])
+    #group_input_009.Curve -> object_info.Object
+    geom_hair_strands.links.new(group_input_009.outputs[12], object_info.inputs[0])
     #group.Geometry -> join_geometry.Geometry
     geom_hair_strands.links.new(group.outputs[0], join_geometry.inputs[0])
     return geom_hair_strands
