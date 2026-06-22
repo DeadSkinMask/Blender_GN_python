@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen Multiple Angles LoRA Prompt Generator</title>
+
+<style>
+body{
+    background:#111;
+    color:#eee;
+    font-family:Arial,Helvetica,sans-serif;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.panel{
+    background:#1a1a1a;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+select{
+    width:100%;
+    padding:10px;
+    font-size:16px;
+    background:#222;
+    color:white;
+    border:1px solid #444;
+    border-radius:6px;
+}
+
+.output{
+    margin-top:20px;
+    background:#000;
+    border:1px solid #444;
+    border-radius:6px;
+    padding:15px;
+    font-family:monospace;
+    font-size:18px;
+    word-break:break-word;
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.info{
+    margin-top:20px;
+    font-size:14px;
+    color:#bbb;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+td,th{
+    border:1px solid #444;
+    padding:8px;
+    text-align:left;
+}
+</style>
+</head>
+<body>
+
+<h1>Qwen Multiple Angles LoRA Prompt Generator</h1>
+
+<div class="panel">
+
+<label>Azimuth (Horizontal Rotation)</label>
+<select id="azimuth">
+    <option value="front view">0° - Front View</option>
+    <option value="front-right quarter view">45° - Front Right Quarter View</option>
+    <option value="right side view">90° - Right Side View</option>
+    <option value="back-right quarter view">135° - Back Right Quarter View</option>
+    <option value="back view">180° - Back View</option>
+    <option value="back-left quarter view">225° - Back Left Quarter View</option>
+    <option value="left side view">270° - Left Side View</option>
+    <option value="front-left quarter view">315° - Front Left Quarter View</option>
+</select>
+
+<label>Elevation (Vertical Angle)</label>
+<select id="elevation">
+    <option value="low-angle shot">-30° - Low Angle</option>
+    <option value="eye-level shot" selected>0° - Eye Level</option>
+    <option value="elevated shot">30° - Elevated</option>
+    <option value="high-angle shot">60° - High Angle</option>
+</select>
+
+<label>Distance</label>
+<select id="distance">
+    <option value="close-up">Close-up</option>
+    <option value="medium shot" selected>Medium Shot</option>
+    <option value="wide shot">Wide Shot</option>
+</select>
+
+<div class="output" id="prompt"></div>
+
+<button onclick="copyPrompt()">Copy Prompt</button>
+
+</div>
+
+<div class="info">
+The LoRA expects the exact token order:
+<br>
+&lt;sks&gt; → azimuth → elevation → distance
+</div>
+
+<table>
+<tr>
+    <th>Total Camera Positions</th>
+    <td>96 (8 × 4 × 3)</td>
+</tr>
+<tr>
+    <th>Azimuths</th>
+    <td>8</td>
+</tr>
+<tr>
+    <th>Elevations</th>
+    <td>4</td>
+</tr>
+<tr>
+    <th>Distances</th>
+    <td>3</td>
+</tr>
+</table>
+
+<script>
+
+const azimuth = document.getElementById("azimuth");
+const elevation = document.getElementById("elevation");
+const distance = document.getElementById("distance");
+const promptBox = document.getElementById("prompt");
+
+function updatePrompt() {
+    promptBox.textContent =
+        `<sks> ${azimuth.value} ${elevation.value} ${distance.value}`;
+}
+
+function copyPrompt() {
+    navigator.clipboard.writeText(promptBox.textContent);
+}
+
+azimuth.addEventListener("change", updatePrompt);
+elevation.addEventListener("change", updatePrompt);
+distance.addEventListener("change", updatePrompt);
+
+updatePrompt();
+
+</script>
+
+</body>
+</html>
